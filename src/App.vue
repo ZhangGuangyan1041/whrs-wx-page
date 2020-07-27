@@ -7,15 +7,14 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import axios from 'axios'
-//import qs from 'qs'
+import http from './api/http.js'
 export default {
   name: 'App',
   components: {
     HelloWorld
   },
   mounted() {
-    axios.get("http://rsj.weihai.gov.cn/module/web/jpage/dataproxy.jsp?startrecord=1&endrecord=45&perpage=15&webid=82&appid=1&columnid=46521&sourceContentType=1&unitid=100041&permissiontype=0").then(data=>{
+    http.post("/getWebText",{url:"http://rsj.weihai.gov.cn/art/2020/7/24/art_46521_2359752.html"}).then(data=>{
       console.log(data)
     })
   }
