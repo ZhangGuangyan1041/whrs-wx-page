@@ -116,6 +116,7 @@
                 let that = this;
                 this.isFresh = true;
                 this.startrecord=1;
+
                 this.endrecord=45;
                 this.finished=false;
                 this.getList().then(data => {
