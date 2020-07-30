@@ -1,5 +1,5 @@
 <template>
-    <van-row>
+    <van-row style="overflow-x: hidden;">
         <van-sticky>
             <van-nav-bar
                     title="政策法规"
@@ -20,7 +20,7 @@
 <!--
             <div v-html="web"></div>
 -->
-            <iframe src="about:blank;" id="target" sandbox="allow-same-origin allow-top-navigation allow-forms allow-scripts allow-popups"  seamless="seamless" style="width: 99vw;height:90vh;border:1px solid #eee" frameborder="no" ></iframe>
+            <iframe :srcdoc="web" id="target" sandbox="allow-same-origin allow-top-navigation allow-forms allow-scripts allow-popups"  seamless="seamless" style="width: 100vw;height:85vh;border:1px solid #eee" frameborder="no" ></iframe>
         </van-row>
     </van-row>
 </template>
@@ -38,7 +38,7 @@
            // msg: String
         },
         mounted() {
-            //let that=this;
+            let that=this;
             let href =localStorage.getItem("currentHref");
 
             console.log("++++++++++++++++++")
@@ -49,22 +49,23 @@
                     html= html
                         .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/g, '')
                         .replace(/src="\//g,`src="http://rsj.weihai.gov.cn/`)
-                        .replace(/<img\s+.+?src=/g,`<img style="width:96vw;text-align:left;" src=`)
+                        .replace(/<img\s+.+?src=/g,`<img style="width:93vw;text-align:left;" src=`)
                         .replace(/href="\//g,`href="http://rsj.weihai.gov.cn/`)
                         .replace(/w1100/g,``)
                        // .replace(/<div\s+id="zoom"[\s\S]*?>/g,`<div id="zoom" style="width:100vw" >`)
-                        .replace(/id=zoom/,`id=zoom style="width:96vw;"`)
+                        .replace(/id=zoom/,`id=zoom style="width:91vw;"`)
                         .replace(/h170/,'')
                         .replace(/menu\s+bgc/,'')
                         .replace(/<head>/,`<head><style>body{overflow-x: hidden;overflow-y:auto}</style>`)
-                        /*.replace(/<img[\s]+.+>/g)*/
+                        .replace(/"\s*bottom\s*"/,`"bottom" style="display:none;"`)
+                    /*.replace(/<img[\s]+.+>/g)*/
                         //.replace(/data-src/g, "src")
                         //.replace(/https/g, 'http')
                         //.replace(/visibility: hidden/g, '')
                         //.replace(/href="##">阅读原文/g, 'href="'+src+'" target="_blank">阅读原文')
                         //.replace(/"/g,'&quot;')
                     ;
-                    //that.web=html;
+                    that.web=html;
                     document.getElementById('target').contentWindow.document.write(html)
                     document.getElementById('target').contentWindow.document.close();
                     /*let objectContainer = document.createElement('div');

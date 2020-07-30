@@ -4,7 +4,7 @@ import {Toast} from "vant";
 
 const http = axios.create(
     {
-        baseURL: 'http://192.168.2.114:8081',
+        //baseURL: 'http://192.168.2.114:8081',
         timeout: 15000,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     }

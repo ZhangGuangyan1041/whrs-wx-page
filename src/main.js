@@ -22,6 +22,7 @@ const app=new Vue({
     ViewComponent () {
       let matchingView = routes[this.currentRoute]
       console.log(matchingView)
+      alert(matchingView)
       return matchingView
           ? require('./pages/' + matchingView + '.vue').default
           : require('./pages/404.vue').default
