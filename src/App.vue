@@ -1,16 +1,17 @@
 <template>
-    <van-area>
-
-    </van-area>
+    <van-row>
+        <keep-alive><!--开启缓存机制-->
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </van-row>
 </template>
 
 <script>
-   // import List from './pages/List'
+    // import List from './pages/List'
     export default {
         name: 'App',
-        components: {
-
-        },
+        components: {},
 
     }
 </script>

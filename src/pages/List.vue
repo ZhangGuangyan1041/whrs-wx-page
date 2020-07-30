@@ -25,6 +25,7 @@
                     :finished="finished"
                     finished-text="没有更多了"
                     @load="onLoad"
+
             >
                 <van-row>
                     <van-card v-for="(record,index) in recordset" :key="index"
@@ -32,7 +33,10 @@
                               @click="open($event,record.href)"
                               style="font-size:0.9em;">
                         <template #title>
-                            <div style="margin-top:15px">{{record.title}}</div>
+                            <div style="margin-top:15px;font-size:1.2em;">{{record.title}}</div>
+                        </template>
+                        <template #thumb>
+                            <img src="../assets/1.jpg" style="width:100%;margin-top:20%" />
                         </template>
                         <template #footer>
                             <van-tag plain type="primary" size="large">{{record.date}}</van-tag>
@@ -49,7 +53,7 @@
     //import HelloWorld from './components/HelloWorld.vue'
     // import http from './api/http.js'
     import {Toast} from 'vant';
-    import routes from "../routes";
+   // import routes from "../routes";
     export default {
         name: 'List',
         components: {
@@ -69,6 +73,7 @@
 
             }
         },
+
         mounted() {
             let that = this;
             that.recordset = []
@@ -147,17 +152,18 @@
                 document.getElementById("flag").scrollIntoView({behavior:"auto",block:"center",inline:"center"})
             },
             open(event,href) {
-                event.preventDefault()
+                //event.preventDefault()
                 //this.$root.href=href;
                 localStorage.setItem("currentHref",href);
                 //window.location.href=href;
                // this.$root.currentRoute = '/about'
-                window.location.pathname='/about'
-                window.history.pushState(
+                //window.location.pathname='/about'
+                this.$router.push('/about')
+                /*window.history.pushState(
                     null,
                     routes['/about'],
                     this.href
-                )
+                )*/
             }
         }
     }

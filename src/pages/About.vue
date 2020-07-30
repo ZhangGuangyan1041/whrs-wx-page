@@ -41,8 +41,8 @@
             let that=this;
             let href =localStorage.getItem("currentHref");
 
-            console.log("++++++++++++++++++")
-            console.log(href);
+           // console.log("++++++++++++++++++")
+           // console.log(href);
             this.$http.post("/getWebText",{url:href}).then(res=>{
                 if(res.status==200){
                     let html=res.data;
@@ -77,12 +77,13 @@
                     Toast(res.data);
                 }
 
-                console.log(res)
+                //console.log(res)
             })
         },
         methods:{
             onClickLeft(){
-                window.history.back();
+                //window.history.back();
+                this.$router.go(-1);
             }
         }
     }

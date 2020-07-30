@@ -1,10 +1,11 @@
 import Vue from 'vue'
-//import App from './App.vue'
+import App from './App.vue'
 //import List from './pages/List'
 import http from './api/http.js'
 import Vant from 'vant';
 import 'vant/lib/index.css';
-import routes from './routes'
+//import routes from './routes'
+import router from './router/router'
 Vue.use(Vant);
 Vue.config.productionTip = false
 Vue.prototype.$http=http;
@@ -12,14 +13,14 @@ Vue.prototype.$http=http;
 
 //const NotFound={template:'<p>Page not found</p>'}
 const app=new Vue({
-  el:'#app',
+  //el:'#app',
   data: {
     currentRoute: window.location.pathname,
     href:null,
     web:""
   },
   computed: {
-    ViewComponent () {
+    /*ViewComponent () {
       let matchingView = routes[this.currentRoute]
       console.log(matchingView)
       alert(matchingView)
@@ -27,16 +28,16 @@ const app=new Vue({
           ? require('./pages/' + matchingView + '.vue').default
           : require('./pages/404.vue').default
 
-    }
+    }*/
   },
   mounted(){
 
   },
-
+  router,
   render (h) {
-    return h(this.ViewComponent)
+    return h(App)
   }
-})/*.$mount('#app')*/
+}).$mount('#app')
 
 window.addEventListener('popstate', () => {
   app.currentRoute = window.location.pathname
